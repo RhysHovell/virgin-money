@@ -1,7 +1,7 @@
 package mapping;
 
-import data.TransactionVO;
-import entity.Transaction;
+import com.virginmoney.app.data.TransactionVO;
+import com.virginmoney.app.entity.Transaction;
 import org.junit.jupiter.api.Test;
 import org.modelmapper.ModelMapper;
 

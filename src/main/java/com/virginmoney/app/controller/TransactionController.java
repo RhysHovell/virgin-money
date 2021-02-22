@@ -1,49 +1,50 @@
-package controller;
+package com.virginmoney.app.controller;
 
-import entity.Transaction;
+import com.virginmoney.app.service.TransactionService;
+import com.virginmoney.app.data.TransactionVO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
-import service.TransactionService;
 
 import java.math.BigDecimal;
 import java.util.List;
 
-@RestController("/transactions")
+@RestController("/transaction")
 public class TransactionController {
 
     @Autowired
     private TransactionService transactionService;
 
-    @GetMapping("/category/{category}")
+    @GetMapping("/{category}")
     @ResponseStatus(HttpStatus.NOT_FOUND)
-    private List<Transaction> findTransactionsByCategory(final String category){
+    private List<TransactionVO> findTransactionsByCategory(@PathVariable final String category){
         return transactionService.findTransactionsByCategory(category);
     }
 
-    @GetMapping("/category/{category}/totalOutgoing")
+    @GetMapping("/{category}/totalOutgoing")
     @ResponseStatus(HttpStatus.NOT_FOUND)
-    private BigDecimal findTotalOutgoingByCategory(final String category){
+    private BigDecimal findTotalOutgoingByCategory(@PathVariable final String category){
         return transactionService.findTotalOutgoingByCategory(category);
     }
 
-    @GetMapping("/category/{category}/maxAmount")
+    @GetMapping("/{category}/maxAmount")
     @ResponseStatus(HttpStatus.NOT_FOUND)
-    private BigDecimal findHighestSpendForYearByCategory(final String category, final Integer year){
+    private BigDecimal findHighestSpendForYearByCategory(@PathVariable final String category,@PathVariable final Integer year){
         return transactionService.findHighestSpendForYearByCategory(category, year);
     }
 
-    @GetMapping("/category/{category}/averageMonthlySpend")
+    @GetMapping("/{category}/averageMonthlySpend")
     @ResponseStatus(HttpStatus.NOT_FOUND)
-    private BigDecimal findAverageMonthlySpendByCategory(final String category){
+    private BigDecimal findAverageMonthlySpendByCategory(@PathVariable final String category){
         return transactionService.findAverageMonthlySpendByCategory(category);
     }
 
-    @GetMapping("/category/{category}/minAmount")
+    @GetMapping("/{category}/minAmount")
     @ResponseStatus(HttpStatus.NOT_FOUND)
-    private BigDecimal findLowestSpendForYearByCategory(final String category, final Integer year){
+    private BigDecimal findLowestSpendForYearByCategory(@PathVariable final String category,@PathVariable final Integer year){
         return transactionService.findLowestSpendForYearByCategory(category, year);
     }
 }

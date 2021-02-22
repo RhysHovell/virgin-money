@@ -1,14 +1,14 @@
-package service;
+package com.virginmoney.app.service;
 
-import entity.Transaction;
-import org.springframework.stereotype.Component;
+import com.virginmoney.app.data.TransactionVO;
+import org.springframework.stereotype.Service;
 
 import java.math.BigDecimal;
 import java.util.List;
 
-@Component
+@Service
 public interface TransactionService {
-    List<Transaction> findTransactionsByCategory(String category);
+    List<TransactionVO> findTransactionsByCategory(String category);
 
     BigDecimal findTotalOutgoingByCategory(String category);
 

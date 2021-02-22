@@ -1,4 +1,4 @@
-package data;
+package com.virginmoney.app.data;
 
 import lombok.Data;
 

@@ -1,6 +1,8 @@
-package entity;
+package com.virginmoney.app.entity;
 
 import lombok.Data;
+import lombok.EqualsAndHashCode;
+import lombok.ToString;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -10,6 +12,8 @@ import java.time.LocalDate;
 
 @Data
 @Entity
+@EqualsAndHashCode
+@ToString
 public class Transaction {
     @Id
     @GeneratedValue
