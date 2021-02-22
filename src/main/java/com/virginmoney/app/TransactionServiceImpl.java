@@ -1,7 +1,5 @@
-package com.virginmoney.app.service;
+package com.virginmoney.app;
 
-import com.virginmoney.app.data.TransactionRepository;
-import com.virginmoney.app.data.TransactionVO;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -11,6 +9,7 @@ import java.math.BigDecimal;
 import java.util.Comparator;
 import java.util.List;
 import java.util.NoSuchElementException;
+import java.util.Objects;
 import java.util.stream.Collectors;
 
 @Service
@@ -24,16 +23,18 @@ public class TransactionServiceImpl implements TransactionService {
 
     @Override
     public List<TransactionVO> findTransactionsByCategory(final String category) {
-        return transactionRepository.findAll().stream().filter(transaction ->
-                transaction.getCategory().equals(category))
+        return transactionRepository.findAll().stream()
+                .filter(transaction -> Objects.nonNull(transaction.getCategory()))
+                .filter(transaction -> transaction.getCategory().equals(category))
                 .map(transaction -> modelMapper.map(transaction, TransactionVO.class))
                 .collect(Collectors.toList());
     }
 
     public BigDecimal findTotalOutgoingByCategory(final String category){
-        final BigDecimal totalOutgoing = BigDecimal.ZERO;
-        final List<TransactionVO> transactions = findTransactionsByCategory(category);
-        return (BigDecimal) transactions.stream().map(transaction -> totalOutgoing.add(transaction.getAmount()));
+        final List<BigDecimal> transactionAmounts = findTransactionsByCategory(category)
+                .stream().map(TransactionVO::getAmount)
+                .collect(Collectors.toList());
+        return transactionAmounts.stream().reduce(BigDecimal.ZERO,BigDecimal::add);
     }
 
     @Override

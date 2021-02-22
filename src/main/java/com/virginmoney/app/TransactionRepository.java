@@ -1,6 +1,5 @@
-package com.virginmoney.app.data;
+package com.virginmoney.app;
 
-import com.virginmoney.app.entity.Transaction;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

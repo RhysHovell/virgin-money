@@ -1,4 +1,4 @@
-package com.virginmoney.app.config;
+package com.virginmoney.app;
 
 import org.modelmapper.ModelMapper;
 import org.springframework.context.annotation.Bean;

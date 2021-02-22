@@ -1,6 +1,6 @@
-DROP TABLE IF EXISTS transactions;
+DROP TABLE IF EXISTS transaction;
 
-CREATE TABLE transactions (
+CREATE TABLE transaction (
     id INT AUTO_INCREMENT PRIMARY KEY,
     transaction_date DATE NOT NULL,
     vendor varchar(45) NOT NULL,
@@ -9,7 +9,7 @@ CREATE TABLE transactions (
     category varchar(30) DEFAULT NULL
 );
 
-INSERT INTO transactions (transaction_date, vendor, type, amount, category) VALUES
+INSERT INTO transaction (transaction_date, vendor, type, amount, category) VALUES
     ('2020-11-04','Morrisons','card','10.40','Groceries'),
     ('2020-10-28','CYBG','direct debit','600','MyMonthlyDD'),
     ('2020-10-28','PureGym','direct debit','40','MyMonthlyDD'),

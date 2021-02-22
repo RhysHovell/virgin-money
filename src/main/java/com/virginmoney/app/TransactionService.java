@@ -1,6 +1,5 @@
-package com.virginmoney.app.service;
+package com.virginmoney.app;
 
-import com.virginmoney.app.data.TransactionVO;
 import org.springframework.stereotype.Service;
 
 import java.math.BigDecimal;

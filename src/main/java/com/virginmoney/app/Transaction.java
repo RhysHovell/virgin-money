@@ -1,4 +1,4 @@
-package com.virginmoney.app.entity;
+package com.virginmoney.app;
 
 import lombok.Data;
 import lombok.EqualsAndHashCode;
@@ -6,6 +6,7 @@ import lombok.ToString;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import java.math.BigDecimal;
 import java.time.LocalDate;
@@ -16,7 +17,7 @@ import java.time.LocalDate;
 @ToString
 public class Transaction {
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
     private LocalDate transactionDate;
     private String vendor;
